@@ -3,7 +3,8 @@
     <div class="top-bar">
       <div class="top-left-bar">
         <span class="bar-title">
-          叮当口袋管理后台
+          <!-- 叮当口袋管理后台 -->
+          后台管理
         </span>
       </div>
 
@@ -90,6 +91,7 @@
       </div>
       <div class="main-content">
         <router-view />
+
       </div>
 
 
@@ -107,6 +109,23 @@
 export default {
   name: 'app',
   components: {
+  },
+  mounted(){
+    let accountPayload = {
+      account:'test',
+      password:'12345678'
+    }
+    fetch(this.global.base_url+'/admin/login',{
+      method:'post',
+      mode:'cors',
+      body: JSON.stringify(accountPayload),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(res=>res.json()).then((response)=>{
+      console.log(response);
+      this.global.token ='Bearer ' + response.data.token;
+    })
   }
 }
 </script>
@@ -132,6 +151,8 @@ html,body{
 .main-content{
   width: 83%;
   height: 100vh;
+  overflow-y: scroll;
+  padding-bottom: -100px;
 }
 
 .top-bar{

@@ -1,6 +1,13 @@
 <template>
     <div id="PassageManage">
-
+        <el-dialog :visible.sync="dialogVisible" title="创建新文章">
+            <div>
+                <span>文章标题：</span>
+                <el-input placeholder="请输入标题"></el-input>
+            </div>
+            <div id="editor-wang">
+            </div>
+        </el-dialog>
 
         <div class="user-list-breadcrumb">
             <el-breadcrumb separator="/">
@@ -79,11 +86,7 @@
             var E = require('wangeditor');
             var editor = new E('#editor-wang');
             editor.create();
-            this.$nextTick(function () {
 
-
-
-            });
 
 
         },
@@ -96,7 +99,8 @@
                 this.$data.useEditor=true;
                 this.$data.dialogVisible=true;
                 this.$data.modifyForm.majorName = this.$data.tableData[index].name;
-                this.$router.push('/NewPassage');
+                // this.$router.push('/NewPassage');
+                this.$data.dialogVisible = true;
             },
             confirmMajor(){
                 this.$data.tableData[this.$data.modifyForm.modifyIndex].name = this.$data.modifyForm.majorName;

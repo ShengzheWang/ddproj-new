@@ -77,11 +77,6 @@
             var editor = new E('#editor-wang');
             editor.create();
             this.$data.editor = editor;
-            this.$nextTick(function () {
-
-
-
-            });
 
 
         },
